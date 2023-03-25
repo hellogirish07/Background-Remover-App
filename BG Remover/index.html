@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" class="css">
+    <link rel="stylesheet" href="resp.css" class="css">
+</head>
+
+<body>
+    <div class="text-center">
+        <img src="logo.jpeg" alt="" class="logo">
+        <h1>Background Remove App</h1>
+    </div>
+    <fieldset>
+        <div class="container mt-4" >
+            <div class="row mt-4">
+                <div class="col-md-12 card mt-4">
+                    <form>
+                        <div class="form-group">
+                            <label for="fileinput">
+                                <h2 class="text-center hadding">Click here to select a File</h2>
+                            </label>
+                            <input id="fileinput" class="try form-control" type="file" />
+                            <input type="button" onclick="submitHandler()" class="btn btn-primary m-1" value="Upload">
+                        </div>
+                    </form>
+                    <button class="btn btn-warning m-1" onclick="downloadfile()">Download</button>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+    <script>
+
+        let imageURL;
+
+        function submitHandler() {
+            console.log("click");
+            const fileinput = document.getElementById('fileinput');
+            console.log(fileinput.files);
+
+            if (fileinput.files.length === 0) {
+                console.error("No file selected.");
+                return;
+            }
+
+            const image = fileinput.files[0];
+
+            const formData = new FormData();
+            formData.append('image_file', image);
+            formData.append('size', 'auto');
+
+            const apikey = 'LqUoYWpWtj4xzC6E5r5pee2i';
+
+            fetch('https://api.remove.bg/v1.0/removebg', {
+                method: 'POST',
+                headers: {
+                    'X-Api-Key': apikey,
+                },
+                body: formData
+            })
+                .then(function (response) {
+                    return response.blob()
+                })
+                .then(function (blob) {
+                    console.log(blob);
+                    const url = URL.createObjectURL(blob);
+
+                    const img = document.createElement('img');
+                    img.src = url;
+                    document.body.appendChild(img);
+
+                    imageURL = url;
+                })
+                .catch(function (error) {
+                    console.error(error);
+                });
+
+        }
+
+        function downloadfile() {
+            var a = document.createElement('a');
+
+            a.href = imageURL;
+            a.download = 'abc.png';
+
+            document.body.appendChild(a);
+
+            a.click();
+
+            document.body.removeChild(a);
+        }
+
+
+    </script>
+</body>
+
+</html>
