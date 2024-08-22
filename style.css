@@ -126,7 +126,12 @@ fieldset {
     border-radius: 15px;
 }
 
+
+.imgOutput img {
+    max-width: 60%;
+}
+
 .imgOutput .btn {
-    width: 50%;
+    max-width: 60%;
 }
 
