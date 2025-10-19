@@ -1,102 +1,168 @@
-@media only screen and (max-width: 520px) {
-    .text-center {
-        justify-content: center;
-        text-align: center;
-        font-size: 15px;
-        display: flex;
-        flex-direction: row;
-        /* max-width: 50px; */
-    }
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  .navbar {
+    /* keep navbar horizontally aligned with a visible menu toggle */
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 18px;
+  }
 
-    .text-center h1 {
-        text-align: left;
-        justify-content: left;
-        /* align-items: left; */
-        font-size: 22px;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
+  .menu-toggle {
+    display: inline-flex;
+  }
 
-    .hadding {
-        font-size: 25px;
-    }
+  /* hide desktop nav links, we'll show mobile menu instead */
+  .nav-right {
+    display: none;
+  }
 
-    .text-center img {
-        width: 30px;
-        border-radius: 9px;
-        margin-left: 5px;
-        margin-right: 5px;
-    }
+  /* show mobile menu when toggled by JS by adding .open */
+  .mobile-menu.open {
+    display: block;
+    /* width: calc(100% - 32px); */
+    margin-top: 30px;
+  }
 
-    fieldset {
-        max-width: 80%;
-    }
+  .hero h2 {
+    font-size: 2.5rem;
+    text-align: center;
+  }
 
-    .btn {
-        width: 95%;
-        margin-right: 5px;
-    }
+  .about h2, .contact h2 {
+    font-size: 2rem;
+    text-align: left;
+  }
 
-    #fileinput {
-        margin-left: 13px;
-        width: 90%;
-    }
-    
-    .form-control {
-        margin-left: 5px;
-        max-width: 100%;
-        font-size: 18px;
-    }
+  .about-intro {
+    max-width: 100%;
+    text-align: left;
+  }
 
-    .imgOutput {
-        max-width: 80%;
-    }
-}@media only screen and (max-width: 520px) {
-    .text-center {
-        justify-content: center;
-        text-align: center;
-        font-size: 15px;
-        display: flex;
-        flex-direction: row;
-        /* max-width: 50px; */
-    }
+  .hero p, .about p, .contact p {
+    font-size: 1.2rem;
+  }
 
-    .text-center h1 {
-        text-align: left;
-        justify-content: left;
-        /* align-items: left; */
-        font-size: 22px;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
+  .hero .content {
+    flex-direction: column;
+    text-align: center;
+  }
 
-    .hadding {
-        font-size: 25px;
-    }
+  .hero img {
+    width: 100%;
+    max-width: 200px;
+    margin-bottom: 20px;
+  }
 
-    .text-center img {
-        width: 30px;
-        border-radius: 9px;
-        margin-left: 5px;
-        margin-right: 5px;
-    }
+  .hero .cta-btn {
+    float: none;
+  }
 
-    fieldset {
-        max-width: 80%;
-    }
+  .hero p{
+    text-align: center;
+  }
 
-    .btn {
-        width: 95%;
-        margin-right: 5px;
-    }
+  .contact p {
+    text-align: left;
+  }
 
-    #fileinput {
-        margin-left: 13px;
-        width: 90%;
-    }
-    
-    .form-control {
-        margin-left: 5px;
-        max-width: 100%;
-        font-size: 18px;
-    }
+  .features-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
 
+  .btn {
+    padding: 8px 18px;
+  }
+
+  .section {
+    margin: 20px;
+    padding: 30px 15px;
+  }
+
+  .about-extra h4 {
+    font-size: 1.2rem;
+  }
+
+  .about-extra .muted {
+    font-size: 0.9rem;
+  }
+  
+  .about-extra .btn {
+    font-size: 0.9rem;
+  }
+
+  .about-extra .btn:hover {
+    font-size: 0.9rem;
+  }
+  
+  .about-extra .btn:hover {
+    font-size: 0.9rem;
+  }
+
+  /* Contact form responsive */
+  .contact-container {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .contact-form {
+    padding: 20px;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    padding: 12px;
+  }
+
+  .contact-form .btn {
+    padding: 12px;
+    font-size: 1rem;
+  }
+
+  /* Remover section responsive */
+  .remover-header h2 {
+    font-size: 2.5rem;
+  }
+
+  .upload-area {
+    padding: 20px;
+  }
+
+  .upload-icon {
+    font-size: 3rem;
+  }
+
+  .images-comparison {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .comparison-divider {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .divider-line {
+    width: 40px;
+    height: 2px;
+  }
+
+  .results-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .results-actions .btn {
+    width: 100%;
+    max-width: 250px;
+  }
+
+  .progress-steps {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .progress-steps::before {
+    display: none;
+  }
 }
