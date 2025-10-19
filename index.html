@@ -1,49 +1,290 @@
 <!DOCTYPE html>
 <html lang="en">
 <!-- Made by GK -->
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="logo.jpeg" class="icon">
-    <link rel="stylesheet" href="style.css" class="css">
-    <link rel="stylesheet" href="resp.css" class="css">
-    <title>Background Remover App By GK</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RemoveX</title>
+  <meta name="description" content="RemoveX: AI-Powered Background Remover App - Instantly remove image backgrounds with our fast, privacy-first tool. Perfect for creators and businesses." />
+  <link rel="icon" type="image/png" href="/img/logo.png" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="resp.css" class="css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
 </head>
 
-<body>
-    <div class="text-center">
-        <img src="logo.jpeg" alt="" class="logo">
-        <h1>Background Remove App</h1>
+<body class="dark-mode">
+  <!-- Navbar -->
+  <nav class="navbar glass">
+    <div class="nav-left">
+      <img src="/img/logo.png" alt="Logo" class="logo" />
+      <h1 class="brand">RemoveX</h1>
     </div>
-    <fieldset>
-        <div class="container mt-4">
-            <div class="row mt-4">
-                <div class="col-md-12 card mt-4">
-                    <form>
-                        <div class="form-group">
-                            <label for="fileinput">
-                                <h2 class="text-center hadding">Click here to select a File</h2>
-                            </label>
-                            <input id="fileinput" class="try form-control" type="file" />
-                            <input type="button" onclick="submitHandler()" class="btn btn-primary m-1" value="Upload">
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </fieldset>
 
-    <div class="imgOutputBox">
-        <div class="imgOutput" id="imgOutput">
-            <button class="btn m-1" onclick="downloadfile()" style="display: none;">Download</button>
+    <!-- Mobile menu toggle -->
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+
+    <div class="nav-right" id="navLinks">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <button class="btn cta-btn" onclick="showApp()">Try Now</button>
+      <button class="mode-toggle" onclick="toggleMode()" id="modeToggle">🌙</button>
+    </div>
+  </nav>
+
+  <!-- Home Section -->
+  <section id="home" class="section hero " data-aos="fade-up">
+    <div class="content">
+      <div class="logo-box">
+        <img src="/img/logo.png" alt="">
+      </div>
+      <div class="home-data">
+        <h2>Remove Image Background Instantly</h2>
+        <p>Upload your image and get a transparent background within seconds using AI technology 🚀</p>
+        <button class="btn cta-btn" onclick="showApp()">Try Now</button>
+      </div>
+    </div>
+  </section>
+  <hr>
+
+  <!-- Background Remover Section -->
+  <main id="removerApp" class="section remover-section glass hidden fade-in" data-aos="fade-up">
+    <div class="remover-header">
+      <h2>Remove Image Background</h2>
+      <p>Upload your image and watch the magic happen! ✨</p>
+    </div>
+
+    <div class="upload-container">
+      <div class="upload-area">
+        <input type="file" id="fileinput" accept="image/*" hidden />
+        <div class="upload-zone" id="uploadZone">
+          <div class="upload-icon">
+            <i class="fa-solid fa-cloud-upload-alt"></i>
+          </div>
+          <div class="upload-text">
+            <h3>Drop your image here</h3>
+            <p>or click to browse files</p>
+            <span class="upload-formats">Supports: JPG, PNG, JPEG</span>
+          </div>
         </div>
+
+        <div id="selectedFile" class="selected-file hidden">
+          <div class="file-info">
+            <i class="fa-solid fa-image"></i>
+            <div class="file-details">
+              <span class="file-name"></span>
+              <span class="file-size"></span>
+            </div>
+            <button class="remove-file" onclick="clearSelection()">
+              <i class="fa-solid fa-times"></i>
+            </button>
+          </div>
+        </div>
+
+        <button id="processBtn" class="btn cta-btn process-btn hidden" onclick="submitHandler()">
+          <span class="btn-text">
+            <i class="fa-solid fa-magic"></i> Remove Background
+          </span>
+          <span class="btn-loading hidden">
+            <i class="fa-solid fa-spinner fa-spin"></i> Processing...
+          </span>
+        </button>
+      </div>
+
+      <!-- Progress Section -->
+      <div id="progressSection" class="progress-section hidden">
+        <div class="progress-header">
+          <h3>Processing your image...</h3>
+          <p>Please wait while we work our magic ✨</p>
+        </div>
+
+        <div class="progress-container">
+          <div class="progress-bar">
+            <div id="progressFill" class="progress-fill"></div>
+          </div>
+          <div class="progress-steps">
+            <div class="step active" data-step="upload">
+              <div class="step-icon">
+                <i class="fa-solid fa-upload"></i>
+              </div>
+              <span>Uploading</span>
+            </div>
+            <div class="step" data-step="process">
+              <div class="step-icon">
+                <i class="fa-solid fa-cogs"></i>
+              </div>
+              <span>Processing</span>
+            </div>
+            <div class="step" data-step="complete">
+              <div class="step-icon">
+                <i class="fa-solid fa-check"></i>
+              </div>
+              <span>Complete</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Results Section -->
+      <div id="resultsSection" class="results-section hidden">
+        <div class="results-header">
+          <h3><i class="fa-solid fa-check"></i> Background Removed Successfully!</h3>
+          <p>Compare your original and processed images below</p>
+        </div>
+
+        <div class="images-comparison">
+          <div class="image-container original">
+            <h4>Original Image</h4>
+            <div class="image-wrapper">
+              <img id="originalImg" alt="Original image" />
+            </div>
+          </div>
+
+          <div class="comparison-divider">
+            <div class="divider-line"></div>
+            <div class="divider-text">VS</div>
+            <div class="divider-line"></div>
+          </div>
+
+          <div class="image-container processed">
+            <h4>Background Removed</h4>
+            <div class="image-wrapper">
+              <img id="resultImg" alt="Processed image" />
+            </div>
+          </div>
+        </div>
+
+        <div class="results-actions">
+          <button id="downloadBtn" class="btn cta-btn" onclick="downloadfile()">
+            <i class="fa-solid fa-download"></i> Download Result
+          </button>
+          <button class="btn secondary-btn" onclick="resetRemover()">
+            <i class="fa-solid fa-redo"></i> Try Another Image
+          </button>
+        </div>
+      </div>
+
+      <div id="err" class="error hidden"></div>
     </div>
-    
-    <div class="errBox">
-        <div id="err"></div>
+  </main>
+  <hr>
+
+  <!-- About Section -->
+  <section id="about" class="section about " data-aos="fade-up">
+    <h2>About This App</h2>
+    <div class="about-intro">
+      <p>
+        The <strong>RemoveX: Background Remover App</strong> by <b>GK</b> uses a lightweight
+        AI-powered engine to remove backgrounds from photos quickly and
+        accurately. It's designed for creators, small businesses, and anyone
+        who needs clean isolated images without complex editing tools.
+      </p>
+      <p class="muted">No sign-ups, no tracking — images are processed on the fly.</p>
     </div>
-    <script src="script.js"></script>
+
+    <div class="features-grid">
+      <article class="feature-card glass">
+        <h3 class="feature-title"><i class="fa-solid fa-bolt"></i> Fast & Reliable</h3>
+        <p class="feature-desc">Get results in seconds — optimized for speed while keeping quality high.</p>
+      </article>
+
+      <article class="feature-card glass">
+        <h3 class="feature-title"><i class="fa-solid fa-shield-halved"></i> Privacy-first</h3>
+        <p class="feature-desc">Images are not stored. Processing happens transiently and securely.</p>
+      </article>
+
+      <article class="feature-card glass">
+        <h3 class="feature-title"><i class="fa-solid fa-image"></i> High Quality</h3>
+        <p class="feature-desc">Preserves fine details like hair and edges for professional results.</p>
+      </article>
+    </div>
+
+    <div class="about-extra">
+      <h4>Supported formats</h4>
+      <p class="muted">PNG, JPG, JPEG — ideal for product photos, portraits, and marketing assets.</p>
+      <!-- <div class="about-cta">
+        <button class="btn cta-btn" onclick="showApp()">Try removing a background</button>
+      </div> -->
+    </div>
+  </section>
+  <hr>
+
+  <!-- Contact Section -->
+  <section id="contact" class="section contact glass" data-aos="fade-up">
+    <h2>Contact Us</h2>
+    <p>Have feedback or suggestions? Reach out anytime.</p>
+
+    <div class="contact-container">
+      <div class="contact-info">
+        <div class="contact-item">
+          <i class="fa-solid fa-envelope"></i>
+          <div>
+            <h4>Email</h4>
+            <p><a href="mailto:hello@gk.com">hello@gk.com</a></p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <i class="fa-solid fa-globe"></i>
+          <div>
+            <h4>Website</h4>
+            <p><a href="https://hello-gk-18.netlify.app" target="_blank"
+                rel="noopener noreferrer">hello-gk-18.netlify.app</a></p>
+          </div>
+        </div>
+      </div>
+
+      <form id="contactForm" class="contact-form" action="https://api.w3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="33d44239-b74e-45c4-be8a-5c9f3feaab1d">
+        <input type="hidden" name="subject" value="New Contact Form Submission from BG Remover App">
+        <input type="hidden" name="from_name" value="BG Remover App">
+        <input type="hidden" name="reply_to" value="client_email">
+
+        <div class="form-group">
+          <input type="text" id="name" name="name" required>
+          <label for="name">Your Name</label>
+        </div>
+
+        <div class="form-group">
+          <input type="email" id="client_email" name="client_email" required>
+          <label for="client_email">Your Email</label>
+        </div>
+
+        <div class="form-group">
+          <input type="text" id="subject" name="message_subject" required>
+          <label for="subject">Subject</label>
+        </div>
+
+        <div class="form-group">
+          <textarea id="message" name="message" rows="5" required></textarea>
+          <label for="message">Your Message</label>
+        </div>
+
+        <button type="submit" class="btn cta-btn">
+          <span class="btn-text">Send Message</span>
+          <span class="btn-loading hidden">
+            <i class="fa-solid fa-spinner fa-spin"></i> Sending...
+          </span>
+        </button>
+
+        <div id="formStatus" class="form-status hidden"></div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer glass">
+    <p>Made with ❤️ by GK | <b>RemoveX</b> © 2025</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
 </body>
 
 </html>
