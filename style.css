@@ -21,11 +21,16 @@
 
 :root {
   /* Vibrant Color Theme */
-  --primary: #ff6f91;       /* Pink Coral */
-  --secondary: #ff9671;     /* Orange Peach */
-  --accent: #ffc75f;        /* Warm Yellow */
-  --highlight: #f9f871;     /* Soft Lemon */
-  --teal: #00c9a7;          /* Teal Contrast */
+  --primary: #ff6f91;
+  /* Pink Coral */
+  --secondary: #ff9671;
+  /* Orange Peach */
+  --accent: #ffc75f;
+  /* Warm Yellow */
+  --highlight: #f9f871;
+  /* Soft Lemon */
+  --teal: #00c9a7;
+  /* Teal Contrast */
   --light-bg: #fafafa;
   --dark-bg: #0f172a;
   --text-light: #ffffff;
@@ -49,21 +54,45 @@ body {
 }
 
 @keyframes subtleShift {
-  0% { background-position: 0% 0%; }
-  50% { background-position: 100% 100%; }
-  100% { background-position: 0% 0%; }
+  0% {
+    background-position: 0% 0%;
+  }
+
+  50% {
+    background-position: 100% 100%;
+  }
+
+  100% {
+    background-position: 0% 0%;
+  }
 }
 
 @keyframes lightShift {
-  0% { background-position: 0% 0%; }
-  50% { background-position: 100% 100%; }
-  100% { background-position: 0% 0%; }
+  0% {
+    background-position: 0% 0%;
+  }
+
+  50% {
+    background-position: 100% 100%;
+  }
+
+  100% {
+    background-position: 0% 0%;
+  }
 }
 
 @keyframes lightColorFlow {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 body.dark-mode {
@@ -79,13 +108,16 @@ body.light-mode {
   background: linear-gradient(to bottom right, #e0e7ff, #f3e8ff, #e0e7ff);
   color: #2d3748;
   transition: background 0.6s ease, color 0.6s ease;
-  background: linear-gradient(
-    to bottom right,
-    #ffd1dc,   /* soft pink */
-    #c1f0f6,   /* sky turquoise */
-    #e0e7ff,   /* lavender blue */
-    #fff5ba    /* light yellow */
-  );
+  background: linear-gradient(to bottom right,
+      #ffd1dc,
+      /* soft pink */
+      #c1f0f6,
+      /* sky turquoise */
+      #e0e7ff,
+      /* lavender blue */
+      #fff5ba
+      /* light yellow */
+    );
   background-size: 300% 300%;
   animation: lightColorFlow 18s ease infinite;
 }
@@ -165,7 +197,7 @@ body.light-mode .glass {
 /* Mobile menu panel */
 .mobile-menu {
   display: none;
-  position: absolute;
+  position: fixed;
   right: 16px;
   top: 64px;
   background: rgba(255, 255, 255, 0.06);
@@ -178,6 +210,7 @@ body.light-mode .glass {
   z-index: 200;
   min-width: 180px;
   width: calc(100% - 32px);
+  text-align: center;
 }
 
 .mobile-menu a,
@@ -264,7 +297,7 @@ body.light-mode .mobile-menu a {
   margin: 40px auto;
   padding: 50px 25px;
   text-align: center;
-  
+
 }
 
 /* #contact {
@@ -278,7 +311,7 @@ body.light-mode .mobile-menu a {
   margin: 0 auto 18px;
 }
 
-.about h2{
+.about h2 {
   font-size: 4rem;
   margin-bottom: 10px;
   background: var(--gradient-text);
@@ -395,7 +428,8 @@ body.light-mode .about-extra .muted {
   width: 500px;
 }
 
-.hero h2, .hero p {
+.hero h2,
+.hero p {
   text-align: left;
 }
 
@@ -417,7 +451,8 @@ body.light-mode .about-extra .muted {
 }
 
 .hero p,
-.about p {
+.about p,
+.howto p {
   font-size: 1.5rem;
   margin-bottom: 20px;
   color: #ddd;
@@ -854,6 +889,7 @@ body.light-mode .results-header p {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -864,6 +900,7 @@ body.light-mode .results-header p {
   0% {
     transform: translateX(-100%);
   }
+
   100% {
     transform: translateX(100%);
   }
@@ -939,7 +976,7 @@ body.light-mode .image-wrapper {
 }
 
 /* === CONTACT SECTION === */
-.contact h2 {
+.contact h2, .howto h2, .faqs h2 {
   background: var(--gradient-text);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -1069,10 +1106,10 @@ body.light-mode .contact-item p {
   padding: 0 5px;
 }
 
-.form-group input:focus + label,
-.form-group input:valid + label,
-.form-group textarea:focus + label,
-.form-group textarea:valid + label {
+.form-group input:focus+label,
+.form-group input:valid+label,
+.form-group textarea:focus+label,
+.form-group textarea:valid+label {
   top: -8px;
   left: 10px;
   font-size: 0.8rem;
@@ -1155,10 +1192,10 @@ body.light-mode .form-group label {
   color: rgba(0, 0, 0, 0.6);
 }
 
-body.light-mode .form-group input:focus + label,
-body.light-mode .form-group input:valid + label,
-body.light-mode .form-group textarea:focus + label,
-body.light-mode .form-group textarea:valid + label {
+body.light-mode .form-group input:focus+label,
+body.light-mode .form-group input:valid+label,
+body.light-mode .form-group textarea:focus+label,
+body.light-mode .form-group textarea:valid+label {
   background: rgba(248, 249, 250, 0.9);
 }
 
@@ -1185,3 +1222,142 @@ body.light-mode .footer {
   opacity: 1;
 }
 
+/* === HOW TO USE SECTION === */
+.howto {
+  margin-top: 40px;
+}
+
+.howto-steps {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-top: 32px;
+}
+
+.howto-step {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 14px;
+  padding: 28px 18px 22px 18px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.howto-step:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.10);
+}
+
+.howto-icon {
+  font-size: 2.2rem;
+  display: inline-block;
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 12px;
+}
+
+.howto-step h3 {
+  font-size: 1.6rem;
+  margin-bottom: 8px;
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.howto-step p {
+  color: #ddd;
+}
+
+body.light-mode .howto-step p {
+  color: #4a5568;
+}
+
+@media (max-width: 900px) {
+  .howto-steps {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .howto-steps {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* === FAQ SECTION === */
+.faqs {
+  margin-top: 40px;
+  max-width: 1000px;
+  width: 100%;
+}
+
+.faq-list {
+  margin: 32px auto 0 auto;
+  text-align: left;
+}
+
+.faq-item {
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 10px;
+  margin-bottom: 18px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  overflow: hidden;
+}
+
+.faq-question {
+  width: 100%;
+  background: none;
+  border: none;
+  outline: none;
+  font-size: 1.1rem;
+  font-weight: 600;
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding: 18px 20px;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: background 0.2s;
+}
+
+.faq-question:hover,
+.faq-question:focus {
+  background: rgba(255, 255, 255, 0.07);
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.faq-answer {
+  padding: 18px 20px 18px 54px;
+  font-size: 1rem;
+  color: #ddd;
+  display: none;
+  animation: fadeIn 0.3s;
+}
+
+.faq-item.open .faq-answer {
+  display: block;
+}
+
+body.light-mode .faq-answer {
+  color: #4a5568;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
