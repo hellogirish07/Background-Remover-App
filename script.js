@@ -491,7 +491,7 @@ function toggleMode() {
     try {
       const formData = new FormData(contactForm);
       
-      const response = await fetch('https://api.w3forms.com/submit', {
+      const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         body: formData
       });
@@ -525,12 +525,28 @@ function toggleMode() {
     });
 
     field.addEventListener('input', () => {
-      if (field.style.borderColor === 'rgb(239, 68, 68)') {
+      if (field.style.borderColor === 'rgb(239, 68, 68)') { // Red for error
         field.style.borderColor = '';
       }
     });
   });
 })();
+
+// --- FAQ Accordion ---
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const item = btn.closest('.faq-item');
+      if (item.classList.contains('open')) {
+        item.classList.remove('open');
+      } else {
+        // Close others
+        document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+        item.classList.add('open');
+      }
+    });
+  });
+});
 
 // --- Initialize File Handling ---
 (function initializeApp() {
